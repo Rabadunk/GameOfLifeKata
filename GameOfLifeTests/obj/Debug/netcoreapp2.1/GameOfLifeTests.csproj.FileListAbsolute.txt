@@ -1,0 +1,17 @@
+/Users/jonathan.alphonso/Code/GameOfLife/GameOfLifeTests/bin/Debug/netcoreapp2.1/xunit.runner.visualstudio.dotnetcore.testadapter.dll
+/Users/jonathan.alphonso/Code/GameOfLife/GameOfLifeTests/bin/Debug/netcoreapp2.1/xunit.runner.reporters.netcoreapp10.dll
+/Users/jonathan.alphonso/Code/GameOfLife/GameOfLifeTests/bin/Debug/netcoreapp2.1/xunit.runner.utility.netcoreapp10.dll
+/Users/jonathan.alphonso/Code/GameOfLife/GameOfLifeTests/bin/Debug/netcoreapp2.1/GameOfLifeTests.deps.json
+/Users/jonathan.alphonso/Code/GameOfLife/GameOfLifeTests/bin/Debug/netcoreapp2.1/GameOfLifeTests.runtimeconfig.json
+/Users/jonathan.alphonso/Code/GameOfLife/GameOfLifeTests/bin/Debug/netcoreapp2.1/GameOfLifeTests.runtimeconfig.dev.json
+/Users/jonathan.alphonso/Code/GameOfLife/GameOfLifeTests/bin/Debug/netcoreapp2.1/GameOfLifeTests.dll
+/Users/jonathan.alphonso/Code/GameOfLife/GameOfLifeTests/bin/Debug/netcoreapp2.1/GameOfLifeTests.pdb
+/Users/jonathan.alphonso/Code/GameOfLife/GameOfLifeTests/bin/Debug/netcoreapp2.1/GameOfLife.dll
+/Users/jonathan.alphonso/Code/GameOfLife/GameOfLifeTests/bin/Debug/netcoreapp2.1/GameOfLife.pdb
+/Users/jonathan.alphonso/Code/GameOfLife/GameOfLifeTests/obj/Debug/netcoreapp2.1/GameOfLifeTests.csprojAssemblyReference.cache
+/Users/jonathan.alphonso/Code/GameOfLife/GameOfLifeTests/obj/Debug/netcoreapp2.1/GameOfLifeTests.csproj.CoreCompileInputs.cache
+/Users/jonathan.alphonso/Code/GameOfLife/GameOfLifeTests/obj/Debug/netcoreapp2.1/GameOfLifeTests.AssemblyInfoInputs.cache
+/Users/jonathan.alphonso/Code/GameOfLife/GameOfLifeTests/obj/Debug/netcoreapp2.1/GameOfLifeTests.AssemblyInfo.cs
+/Users/jonathan.alphonso/Code/GameOfLife/GameOfLifeTests/obj/Debug/netcoreapp2.1/GameOfLifeTests.csproj.CopyComplete
+/Users/jonathan.alphonso/Code/GameOfLife/GameOfLifeTests/obj/Debug/netcoreapp2.1/GameOfLifeTests.dll
+/Users/jonathan.alphonso/Code/GameOfLife/GameOfLifeTests/obj/Debug/netcoreapp2.1/GameOfLifeTests.pdb
