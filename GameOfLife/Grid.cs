@@ -3,10 +3,18 @@ using System.Linq;
 
 namespace GameOfLife
 {
-    public class Life
+    public class Grid
     {
         private readonly Dictionary<Cell, int> _cells = new Dictionary<Cell, int>();
         public Dictionary<Cell, int> Cells => _cells;
+        private int _height;
+        private int _width;
+
+        public Grid(int height, int width)
+        {
+            _height = height;
+            _width = width;
+        }
 
         public void InsertCell(Cell cell)
         {
@@ -20,7 +28,7 @@ namespace GameOfLife
 
         public void RemoveCell(Cell cell)
         {
-            if (_cells.Any(c => c.Key.Row == cell.Row & c.Key.Col == cell.Col))
+            if (_cells.Keys.ToList().Contains(cell))
             {
                 _cells.Remove(cell);
             }
@@ -37,7 +45,14 @@ namespace GameOfLife
             }
         }
 
-        private int CountNeighbors(Cell cell)
+        private int FixForOverlap(int position, bool isRow)
+        {
+            var max = isRow ? _width : _height;           
+            if (position < 0) return max - 1;
+            return position >= max ? 0 : position;
+        }
+
+        public int CountNeighbors(Cell cell)
         {
             var neighbors = 0;
             
@@ -45,14 +60,17 @@ namespace GameOfLife
             {
                 for (var col = cell.Col - 1; col <= cell.Col + 1; col++)
                 {
-                    if (_cells.Any(c => c.Key.Row == row & c.Key.Col == col))
+                    var colCheck = FixForOverlap(col, false);
+                    var rowCheck = FixForOverlap(row, true);
+                    
+                    if (_cells.Any(c => c.Key.Row == rowCheck & c.Key.Col == colCheck))
                     {
                         neighbors += 1;
                     } 
                 }
             }
 
-            return neighbors - 1;
+            return _cells.Keys.ToList().Contains(cell) ? neighbors - 1 : neighbors;
         }
 
     }

@@ -6,7 +6,9 @@ namespace GameOfLife
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var render = new Renderer();
+            render.DisplayGreeting();
+            render.DisplayMenu();
         }
     }
 }

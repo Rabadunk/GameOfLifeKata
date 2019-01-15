@@ -13,5 +13,21 @@ namespace GameOfLife
             Col = col;
         }
         
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as Cell);
+        }
+
+        public bool Equals(Cell other)
+        {
+            if (ReferenceEquals(other, null)) return false ;
+
+            if (ReferenceEquals(this, other)) return true;
+
+            if (GetType() != other.GetType()) return false;
+
+            return (Row == other.Row) && (Col == other.Col);
+        }
+        
     }
 }
