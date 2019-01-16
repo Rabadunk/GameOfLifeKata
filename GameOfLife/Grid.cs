@@ -7,13 +7,13 @@ namespace GameOfLife
     {
         private readonly Dictionary<Cell, int> _cells = new Dictionary<Cell, int>();
         public Dictionary<Cell, int> Cells => _cells;
-        private int _height;
-        private int _width;
+        public int Height { get;  }
+        public int Width { get;  }
 
         public Grid(int height, int width)
         {
-            _height = height;
-            _width = width;
+            Height = height;
+            Width = width;
         }
 
         public void InsertCell(Cell cell)
@@ -47,7 +47,7 @@ namespace GameOfLife
 
         private int FixForOverlap(int position, bool isRow)
         {
-            var max = isRow ? _width : _height;           
+            var max = isRow ? Width : Height;           
             if (position < 0) return max - 1;
             return position >= max ? 0 : position;
         }

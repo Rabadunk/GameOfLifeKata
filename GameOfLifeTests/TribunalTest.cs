@@ -64,7 +64,7 @@ namespace GameOfLifeTests
             life.InsertCell(cellFive);
 
             tribunal.DecideDead(life);
-            tribunal.UpdateUniverse(life, 4, 4);
+            tribunal.UpdateUniverse(life);
             
             Assert.Equal(8, life.Cells.Count);      
         }

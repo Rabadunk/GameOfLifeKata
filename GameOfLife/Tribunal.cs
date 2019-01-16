@@ -15,18 +15,20 @@ namespace GameOfLife
         {
             foreach (var cell in grid.Cells.Keys.ToList())
             {
-                if (grid.Cells[cell] < 2 || grid.Cells[cell] > 3 && !_deadCells.Contains(cell))
+                if (grid.Cells[cell] < 2 || 
+                    grid.Cells[cell] > 3 && 
+                    !_deadCells.Contains(cell))
                 {
                     _deadCells.Add(cell);
                 }
             }
         }
 
-        private void DecideNewLife(Grid grid, int height, int width)
+        private void DecideNewLife(Grid grid)
         {
-            for(var row = 0; row < width; row++)
+            for(var row = 0; row < grid.Width; row++)
             {
-                for (var col = 0; col < height; col++)
+                for (var col = 0; col < grid.Height; col++)
                 {
                     var newCell = new Cell(row, col);
 
@@ -59,10 +61,10 @@ namespace GameOfLife
         }
 
 
-        public void UpdateUniverse(Grid grid, int height, int width)
+        public void UpdateUniverse(Grid grid)
         {  
             DecideDead(grid);
-            DecideNewLife(grid, height, width);
+            DecideNewLife(grid);
             
             Eradicate(grid);
             Populate(grid);
