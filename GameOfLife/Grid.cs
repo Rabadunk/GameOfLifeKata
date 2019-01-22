@@ -48,8 +48,8 @@ namespace GameOfLife
         private int FixForOverlap(int position, bool isRow)
         {
             var max = isRow ? Width : Height;           
-            if (position < 0) return max - 1;
-            return position >= max ? 0 : position;
+            if (position < 1) return max;
+            return position > max ? 1 : position;
         }
 
         public int CountNeighbors(Cell cell)

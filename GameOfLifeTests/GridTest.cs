@@ -66,14 +66,14 @@ namespace GameOfLifeTests
         public void ShouldHoldCorrectNeighborCountWhenCellsAreOverlappedToOtherSide()
         {         
             var grid = new Grid(3, 3);
-            var cellOne = new Cell(0, 0);
-            var cellTwo = new Cell(0, 1);
-            var cellThree = new Cell(0, 2);
-            var cellFour = new Cell(1, 0);
-            var cellFive = new Cell(1, 2);
-            var cellSix = new Cell(2, 0);
-            var cellSeven = new Cell(2, 1);
-            var cellEight = new Cell(2, 2);
+            var cellOne = new Cell(1, 1);
+            var cellTwo = new Cell(1, 2);
+            var cellThree = new Cell(1, 3);
+            var cellFour = new Cell(2, 1);
+            var cellFive = new Cell(2, 3);
+            var cellSix = new Cell(3, 1);
+            var cellSeven = new Cell(3, 2);
+            var cellEight = new Cell(3, 3);
 
             grid.InsertCell(cellOne);
             grid.InsertCell(cellTwo);

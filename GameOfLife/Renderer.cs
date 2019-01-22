@@ -24,10 +24,10 @@ namespace GameOfLife
         {
             Console.WriteLine("This is your grid: ");
             
-            for (var i = 0; i < grid.Height; i++) 
+            for (var i = 1; i <= grid.Height; i++) 
             {
 
-                for (var j = 0; j < grid.Width; j++)
+                for (var j = 1; j <= grid.Width; j++)
                 {
                     var cell = new Cell(i, j);
 

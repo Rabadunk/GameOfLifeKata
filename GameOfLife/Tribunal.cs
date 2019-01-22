@@ -8,10 +8,8 @@ namespace GameOfLife
     {
         private readonly List<Cell> _deadCells = new List<Cell>();
         private readonly List<Cell> _newCells = new List<Cell>();
-        public List<Cell> DeadCells => _deadCells;
-        public List<Cell> NewCells => _newCells;
         
-        public void DecideDead(Grid grid)
+        private void DecideDead(Grid grid)
         {
             foreach (var cell in grid.Cells.Keys.ToList())
             {
@@ -26,9 +24,9 @@ namespace GameOfLife
 
         private void DecideNewLife(Grid grid)
         {
-            for(var row = 0; row < grid.Width; row++)
+            for(var row = 1; row <= grid.Width; row++)
             {
-                for (var col = 0; col < grid.Height; col++)
+                for (var col = 1; col <= grid.Height; col++)
                 {
                     var newCell = new Cell(row, col);
 

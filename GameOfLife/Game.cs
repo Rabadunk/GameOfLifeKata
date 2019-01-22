@@ -7,6 +7,7 @@ namespace GameOfLife
     {
         private readonly Renderer _render = new Renderer();
         private readonly Tribunal _tribunal = new Tribunal();
+        private readonly InputValidator _validate = new InputValidator();
         private string _option;
         private Grid _grid;
 
@@ -20,14 +21,11 @@ namespace GameOfLife
         {
             _render.Menu();
             _option = Console.ReadLine();
-            switch (_option)
+            
+            if(_option == "0") PlayGame();
+            else
             {
-                case "0":
-                    PlayGame();
-                    break;
-                case "1":
-                    Exit();
-                    break;
+                Exit();
             }
         }
 
@@ -52,43 +50,20 @@ namespace GameOfLife
                     break;
                 }
 
-                var coordinates = InputCoordinateValidator(input);
+                var coordinates = _validate.InputCoordinate(input);
                 var newCell = new Cell(coordinates[0], coordinates[1]);
                 _grid.InsertCell(newCell);
                 _render.Grid(_grid);             
             }
-        }
-
-
-        private List<int> InputCoordinateValidator(string input)
-        {
-            var positions = input.Split();
-             
-            int row; int col;
-            
-            while( positions.Length < 2 ||
-                  !int.TryParse(positions[0], out row) ||
-                  !int.TryParse(positions[1], out col))
-            {
-                _render.ErrorWrongCoordinates();
-                _render.AskForAnswer();
-                positions = Console.ReadLine().Split();
-            }
-            
-            return new List<int> {row, col};
-        }
-        
-        
+        }        
 
         private void PlayGame()
         {
             CreateGameGrid();
-            
             while (_option == "0")
             {
                 NextMove();
-            }
-            
+            }      
             PlayOrExit();
         }
 
