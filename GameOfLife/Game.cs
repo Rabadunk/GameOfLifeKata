@@ -6,10 +6,9 @@ namespace GameOfLife
     public class Game
     {
         private readonly Renderer _render = new Renderer();
-        private readonly Tribunal _tribunal = new Tribunal();
         private readonly InputValidator _validate = new InputValidator();
         private string _option;
-        private Grid _grid;
+        private World _world;
 
         public void Start()
         {
@@ -29,17 +28,17 @@ namespace GameOfLife
             }
         }
 
-        private void CreateGameGrid()
+        private void CreateWorld()
         {
-            _render.GridSetup();
+            _render.WorldSetup();
             var size = Console.ReadLine();
-            var dimensions = InputCoordinateValidator(size);
-            _grid = new Grid(dimensions[0], dimensions[1]);
-            _render.Grid(_grid);
-            GetStartCellsForGrid();            
+            var dimensions = _validate.Coordinate(size);
+            _world = new World(dimensions[0], dimensions[1]);
+            _render.World(_world);
+            GetStartCellsForWorld();            
         }
 
-        private void GetStartCellsForGrid()
+        private void GetStartCellsForWorld()
         {
             while(true)
             {
@@ -50,16 +49,16 @@ namespace GameOfLife
                     break;
                 }
 
-                var coordinates = _validate.InputCoordinate(input);
+                var coordinates = _validate.Coordinate(input);
                 var newCell = new Cell(coordinates[0], coordinates[1]);
-                _grid.InsertCell(newCell);
-                _render.Grid(_grid);             
+                _world.InsertCell(newCell);
+                _render.World(_world);             
             }
         }        
 
         private void PlayGame()
         {
-            CreateGameGrid();
+            CreateWorld();
             while (_option == "0")
             {
                 NextMove();
@@ -69,8 +68,8 @@ namespace GameOfLife
 
         private void NextMove()
         {
-            _tribunal.UpdateUniverse(_grid);
-            _render.Grid(_grid);
+            _world.UpdateWorld();
+            _render.World(_world);
             _render.NextTurn();
             _option = Console.ReadLine();            
         }

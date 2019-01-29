@@ -4,17 +4,17 @@ using System.Xml.Linq;
 
 namespace GameOfLife
 {
-    public class Tribunal
+    public class WorldRules
     {
         private readonly List<Cell> _deadCells = new List<Cell>();
         private readonly List<Cell> _newCells = new List<Cell>();
         
-        private void DecideDead(Grid grid)
+        public void DecideDead(World world)
         {
-            foreach (var cell in grid.Cells.Keys.ToList())
+            foreach (var cell in world.Cells.Keys.ToList())
             {
-                if (grid.Cells[cell] < 2 || 
-                    grid.Cells[cell] > 3 && 
+                if (world.Cells[cell] < 2 || 
+                    world.Cells[cell] > 3 && 
                     !_deadCells.Contains(cell))
                 {
                     _deadCells.Add(cell);
@@ -22,15 +22,15 @@ namespace GameOfLife
             }
         }
 
-        private void DecideNewLife(Grid grid)
+        public void DecideNewLife(World world)
         {
-            for(var row = 1; row <= grid.Width; row++)
+            for(var row = 1; row <= world.Width; row++)
             {
-                for (var col = 1; col <= grid.Height; col++)
+                for (var col = 1; col <= world.Height; col++)
                 {
                     var newCell = new Cell(row, col);
 
-                    if (grid.CountNeighbors(newCell) == 3)
+                    if (world.CountNeighbors(newCell) == 3)
                     {
                         _newCells.Add(newCell);
                     }
@@ -38,34 +38,24 @@ namespace GameOfLife
             }
         }
 
-        private void Eradicate(Grid grid)
+        public void Eradicate(World world)
         {
             foreach (var cell in _deadCells)
             {
-                grid.RemoveCell(cell);
+                world.RemoveCell(cell);
             }
             
             _deadCells.Clear();
         }
 
-        private void Populate(Grid grid)
+        public void Populate(World world)
         {
             foreach (var cell in _newCells)
             {
-                grid.InsertCell(cell);
+                world.InsertCell(cell);
             } 
                        
             _newCells.Clear();
-        }
-
-
-        public void UpdateUniverse(Grid grid)
-        {  
-            DecideDead(grid);
-            DecideNewLife(grid);
-            
-            Eradicate(grid);
-            Populate(grid);
         }
     }
 }

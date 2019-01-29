@@ -20,18 +20,18 @@ namespace GameOfLife
             AskForAnswer();
         }
 
-        public void Grid(Grid grid)
+        public void World(World world)
         {
             Console.WriteLine("This is your grid: ");
             
-            for (var i = 1; i <= grid.Height; i++) 
+            for (var i = 1; i <= world.Height; i++) 
             {
 
-                for (var j = 1; j <= grid.Width; j++)
+                for (var j = 1; j <= world.Width; j++)
                 {
                     var cell = new Cell(i, j);
 
-                    Console.Write(grid.Cells.Keys.ToList().Contains(cell) ? "^ " : ". ");
+                    Console.Write(world.Cells.Keys.ToList().Contains(cell) ? "^ " : ". ");
                 }
                 
                 Console.WriteLine();
@@ -45,7 +45,7 @@ namespace GameOfLife
             AskForAnswer();
         }
 
-        public void GridSetup()
+        public void WorldSetup()
         {
             Console.WriteLine("Please enter Grid dimensions in the format 'height width', eg. '3 3'.");
             AskForAnswer();

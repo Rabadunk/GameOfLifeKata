@@ -10,7 +10,7 @@ namespace GameOfLifeTests
         [Fact]
         public void ShouldNotBeEmptyWhenCellIsAdded()
         {
-            var life = new Grid(3, 3);
+            var life = new World(3, 3);
             var cell = new Cell(1, 1);
 
             life.InsertCell(cell);
@@ -21,7 +21,7 @@ namespace GameOfLifeTests
         [Fact]
         public void ShouldNotInsertCellToGridWhenCellAlreadyExists()
         {
-            var grid = new Grid(3, 3);
+            var grid = new World(3, 3);
             var cellOne = new Cell(1, 1);
             var cellTwo = new Cell(1, 1);
             
@@ -34,7 +34,7 @@ namespace GameOfLifeTests
         [Fact]
         public void ShouldRemoveCellFromGridWhenCellIsInGrid()
         {
-            var grid = new Grid(3, 3);
+            var grid = new World(3, 3);
             var cellOne = new Cell(1, 1);
             var cellTwo = new Cell(1, 2);
 
@@ -48,7 +48,7 @@ namespace GameOfLifeTests
         [Fact]
         public void ShouldHoldCorrectNeighborCountWhenCellsAreInGrid()
         {
-            var grid = new Grid(5, 5);
+            var grid = new World(5, 5);
             var cellOne = new Cell(1, 1);
             var cellTwo = new Cell(1, 2);
             var cellThree = new Cell(3, 3);
@@ -65,7 +65,7 @@ namespace GameOfLifeTests
         [Fact]
         public void ShouldHoldCorrectNeighborCountWhenCellsAreOverlappedToOtherSide()
         {         
-            var grid = new Grid(3, 3);
+            var grid = new World(3, 3);
             var cellOne = new Cell(1, 1);
             var cellTwo = new Cell(1, 2);
             var cellThree = new Cell(1, 3);

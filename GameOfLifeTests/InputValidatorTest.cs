@@ -14,7 +14,7 @@ namespace GameOfLifeTests
         public void ShouldTakeInputCoordinatesAndReturnValidCoordinatesInList(string input, int x, int y)
 
         {
-            var actual = _validate.InputCoordinate(input);
+            var actual = _validate.Coordinate(input);
             var expected = new List<int> {x, y};
             Assert.Equal(expected, actual);
 

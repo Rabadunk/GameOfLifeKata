@@ -3,14 +3,15 @@ using System.Linq;
 
 namespace GameOfLife
 {
-    public class Grid
+    public class World
     {
         private readonly Dictionary<Cell, int> _cells = new Dictionary<Cell, int>();
+        private WorldRules _worldRules = new WorldRules();
         public Dictionary<Cell, int> Cells => _cells;
         public int Height { get;  }
         public int Width { get;  }
 
-        public Grid(int height, int width)
+        public World(int height, int width)
         {
             Height = height;
             Width = width;
@@ -71,6 +72,15 @@ namespace GameOfLife
             }
 
             return _cells.Keys.ToList().Contains(cell) ? neighbors - 1 : neighbors;
+        }
+
+        public void UpdateWorld()
+        {  
+            _worldRules.DecideDead(this);
+            _worldRules.DecideNewLife(this);
+            
+            _worldRules.Eradicate(this);
+            _worldRules.Populate(this);
         }
 
     }

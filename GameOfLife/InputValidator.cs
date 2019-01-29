@@ -7,7 +7,7 @@ namespace GameOfLife
     {
         private readonly Renderer _render = new Renderer();
         
-        public List<int> InputCoordinate(string input)
+        public List<int> Coordinate(string input)
         {
             var positions = input.Split();   
             int row; int col;

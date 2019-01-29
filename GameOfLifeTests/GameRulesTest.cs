@@ -4,13 +4,13 @@ using Xunit;
 
 namespace GameOfLifeTests
 {
-    public class TribunalTest
+    public class GameRulesTest
     {   
         [Fact]
         public void ShouldPopulateCellsWhenGrowthIsPossible()
         {
-            var life = new Grid(5, 5);
-            var tribunal = new Tribunal();
+            var life = new World(5, 5);
+            var tribunal = new WorldRules();
             var cellOne = new Cell(1, 2);
             var cellTwo = new Cell(2, 2);
             var cellThree = new Cell(3, 2);
@@ -23,7 +23,6 @@ namespace GameOfLifeTests
             life.InsertCell(cellFour);
             life.InsertCell(cellFive);
 
-            tribunal.UpdateUniverse(life);
             
             Assert.Equal(8, life.Cells.Count);      
         }
