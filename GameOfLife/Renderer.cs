@@ -22,21 +22,17 @@ namespace GameOfLife
 
         public void World(World world)
         {
-            Console.WriteLine("This is your grid: ");
-            
+            Console.WriteLine("This is your grid: ");          
             for (var i = 1; i <= world.Height; i++) 
             {
-
                 for (var j = 1; j <= world.Width; j++)
                 {
                     var cell = new Cell(i, j);
 
                     Console.Write(world.Cells.Keys.ToList().Contains(cell) ? "^ " : ". ");
                 }
-                
                 Console.WriteLine();
             }
-
         }
 
         public void NextTurn()
@@ -67,11 +63,11 @@ namespace GameOfLife
             Console.WriteLine("See you later alligator ;)");
         }
 
-        public void ErrorWrongCoordinates()
+        public void ErrorWrongGridInput(string error)
         {
-            Console.WriteLine("Sorry, that is an invalid input.");
-            Console.WriteLine("This may be because you typed letters instead of numbers");
-            Console.WriteLine("or you put more than two numbers.");
+            Console.WriteLine($"Sorry, that is an invalid {error}.");
+            Console.WriteLine("This may be because you typed letters instead of numbers,");
+            Console.WriteLine("put more than two numbers or it's out of range.");
             Console.WriteLine("Please make sure your input is as follows: ");
             Console.WriteLine("'number number' eg. '1 1' or '50 20'");
             Console.WriteLine();

@@ -1,32 +1,22 @@
-using System;
-using System.Collections.Generic;
-
 namespace GameOfLife
 {
     public class InputValidator
-    {
-        private readonly Renderer _render = new Renderer();
-        
-        public List<int> Coordinate(string input)
+    {   
+        public bool ValidCoordinate(string input, World world)
         {
-            var positions = input.Split();   
-            int row; int col;
-            while(positions.Length < 2 ||
-                  !int.TryParse(positions[0], out row) ||
-                  !int.TryParse(positions[1], out col))
-            {
-                _render.ErrorWrongCoordinates();
-                _render.AskForAnswer();
-                positions = Console.ReadLine().Split();
-            }     
-            return new List<int> {row, col};
+            var positions = input.Split();
+            return positions.Length == 2 &&
+                   int.TryParse(positions[0], out var row) &&
+                   int.TryParse(positions[1], out var col) &&
+                   world.Width >= col && world.Height >= row;
         }
 
-
-        public List<int> InputGridSize(string input)
+        public bool ValidWorldSize(string input)
         {
-            throw new NotImplementedException();
-        }
-        
+            var dimensions = input.Split();   
+            return dimensions.Length == 2 &&
+                   int.TryParse(dimensions[0], out var row) &&
+                   int.TryParse(dimensions[1], out var col);
+        }   
     }
 }

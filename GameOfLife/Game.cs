@@ -1,12 +1,11 @@
 using System;
-using System.Collections.Generic;
 
 namespace GameOfLife
 {
     public class Game
     {
         private readonly Renderer _render = new Renderer();
-        private readonly InputValidator _validate = new InputValidator();
+        private readonly InputValidator _valid = new InputValidator();
         private string _option;
         private World _world;
 
@@ -20,42 +19,13 @@ namespace GameOfLife
         {
             _render.Menu();
             _option = Console.ReadLine();
-            
             if(_option == "0") PlayGame();
             else
             {
                 Exit();
             }
         }
-
-        private void CreateWorld()
-        {
-            _render.WorldSetup();
-            var size = Console.ReadLine();
-            var dimensions = _validate.Coordinate(size);
-            _world = new World(dimensions[0], dimensions[1]);
-            _render.World(_world);
-            GetStartCellsForWorld();            
-        }
-
-        private void GetStartCellsForWorld()
-        {
-            while(true)
-            {
-                _render.AskForStartingCells();
-                var input = Console.ReadLine();
-                if (input == "done")
-                {
-                    break;
-                }
-
-                var coordinates = _validate.Coordinate(input);
-                var newCell = new Cell(coordinates[0], coordinates[1]);
-                _world.InsertCell(newCell);
-                _render.World(_world);             
-            }
-        }        
-
+        
         private void PlayGame()
         {
             CreateWorld();
@@ -64,6 +34,53 @@ namespace GameOfLife
                 NextMove();
             }      
             PlayOrExit();
+        }
+
+        private void CreateWorld()
+        {
+            _render.WorldSetup();
+            var dimensions = GetValidGridSize().Split();
+            _world = new World(ParseStringToInt(dimensions[0]), ParseStringToInt(dimensions[1]));
+            _render.World(_world);
+            GetStartCellsForWorld();            
+        }
+        
+        private string GetValidGridSize()
+        {
+            var input = Console.ReadLine();
+            while (!_valid.ValidWorldSize(input))
+            {
+                _render.ErrorWrongGridInput("size");
+                _render.AskForAnswer();
+                input = Console.ReadLine();
+            }
+            return input;
+        }
+
+        private void GetStartCellsForWorld()
+        {
+            var input = GetValidCoordinates();
+            while(input != "done")
+            {
+                var coordinates = input.Split();
+                var newCell = new Cell(ParseStringToInt(coordinates[0]), ParseStringToInt(coordinates[1]));
+                _world.InsertCell(newCell);
+                _render.World(_world);
+                input = GetValidCoordinates();
+            }
+        }
+        
+        private string GetValidCoordinates()
+        {
+            _render.AskForStartingCells();
+            var input = Console.ReadLine();
+            while (!_valid.ValidCoordinate(input, _world) && input != "done")
+            {
+                _render.ErrorWrongGridInput("coordinate");
+                _render.AskForAnswer();
+                input = Console.ReadLine();
+            }
+            return input;
         }
 
         private void NextMove()
@@ -78,5 +95,11 @@ namespace GameOfLife
         {
             _render.GoodBye();
         }
+
+        private static int ParseStringToInt(string input)
+        {
+            return int.Parse(input);         
+        }
+        
     }
 }

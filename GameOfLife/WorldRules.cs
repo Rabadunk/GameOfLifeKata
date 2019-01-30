@@ -1,13 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Xml.Linq;
 
 namespace GameOfLife
 {
     public class WorldRules
     {
-        private readonly List<Cell> _deadCells = new List<Cell>();
-        private readonly List<Cell> _newCells = new List<Cell>();
+        public readonly List<Cell> _cellsToBeDestroyed = new List<Cell>();
+        public readonly List<Cell> _cellsToBeCreated = new List<Cell>();
         
         public void DecideDead(World world)
         {
@@ -15,9 +14,9 @@ namespace GameOfLife
             {
                 if (world.Cells[cell] < 2 || 
                     world.Cells[cell] > 3 && 
-                    !_deadCells.Contains(cell))
+                    !_cellsToBeDestroyed.Contains(cell))
                 {
-                    _deadCells.Add(cell);
+                    _cellsToBeDestroyed.Add(cell);
                 }
             }
         }
@@ -32,7 +31,7 @@ namespace GameOfLife
 
                     if (world.CountNeighbors(newCell) == 3)
                     {
-                        _newCells.Add(newCell);
+                        _cellsToBeCreated.Add(newCell);
                     }
                 }
             }
@@ -40,22 +39,22 @@ namespace GameOfLife
 
         public void Eradicate(World world)
         {
-            foreach (var cell in _deadCells)
+            foreach (var cell in _cellsToBeDestroyed)
             {
                 world.RemoveCell(cell);
             }
             
-            _deadCells.Clear();
+            _cellsToBeDestroyed.Clear();
         }
 
         public void Populate(World world)
         {
-            foreach (var cell in _newCells)
+            foreach (var cell in _cellsToBeCreated)
             {
                 world.InsertCell(cell);
             } 
                        
-            _newCells.Clear();
+            _cellsToBeCreated.Clear();
         }
     }
 }
