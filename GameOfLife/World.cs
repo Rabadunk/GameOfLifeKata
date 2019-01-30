@@ -6,7 +6,7 @@ namespace GameOfLife
     public class World
     {
         private readonly Dictionary<Cell, int> _cells = new Dictionary<Cell, int>();
-        private WorldRules _worldRules = new WorldRules();
+        private readonly WorldRules _worldRules = new WorldRules();
         public Dictionary<Cell, int> Cells => _cells;
         public int Height { get;  }
         public int Width { get;  }
@@ -46,9 +46,9 @@ namespace GameOfLife
             }
         }
 
-        private int FixForOverlap(int position, bool isRow)
+        private int FixForOverlap(int position, bool isCol)
         {
-            var max = isRow ? Width : Height;           
+            var max = isCol ? Width : Height;           
             if (position < 1) return max;
             return position > max ? 1 : position;
         }
@@ -61,8 +61,8 @@ namespace GameOfLife
             {
                 for (var col = cell.Col - 1; col <= cell.Col + 1; col++)
                 {
-                    var colCheck = FixForOverlap(col, false);
-                    var rowCheck = FixForOverlap(row, true);
+                    var colCheck = FixForOverlap(col, true);
+                    var rowCheck = FixForOverlap(row, false);
                     
                     if (_cells.Any(c => c.Key.Row == rowCheck & c.Key.Col == colCheck))
                     {

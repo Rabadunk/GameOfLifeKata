@@ -61,7 +61,7 @@ namespace GameOfLifeTests
         }
         
         [Fact]
-        public void ShouldHoldCorrectNeighborCountWhenCellsAreOverlappedToOtherSide()
+        public void ShouldCountSevenNeighboursWhenCellsAreInChestShape()
         {         
             var grid = new World(3, 3);
             var cellOne = new Cell(1, 1);
@@ -85,6 +85,27 @@ namespace GameOfLifeTests
             Assert.Equal(7, grid.Cells[cellOne]);
             Assert.Equal(7, grid.Cells[cellTwo]);
             Assert.Equal(7, grid.Cells[cellThree]);
+        }
+        
+        [Fact]
+        public void ShouldCreateSquarePatternWhenCrossPatternIsInputted()
+        {
+            var life = new World(5, 5);
+            var cellOne = new Cell(1, 2);
+            var cellTwo = new Cell(2, 2);
+            var cellThree = new Cell(3, 2);
+            var cellFour = new Cell(2, 1);
+            var cellFive = new Cell(2, 3);
+
+            life.InsertCell(cellOne);
+            life.InsertCell(cellTwo);
+            life.InsertCell(cellThree);
+            life.InsertCell(cellFour);
+            life.InsertCell(cellFive);
+
+            life.UpdateWorld();
+            
+            Assert.Equal(8, life.Cells.Count);      
         }
 
     }

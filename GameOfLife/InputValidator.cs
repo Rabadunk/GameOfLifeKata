@@ -17,6 +17,11 @@ namespace GameOfLife
             return dimensions.Length == 2 &&
                    int.TryParse(dimensions[0], out var row) &&
                    int.TryParse(dimensions[1], out var col);
-        }   
+        }
+
+        public bool ValidMenuOption(string input)
+        {
+            return input == "0" || input == "1";
+        }
     }
 }

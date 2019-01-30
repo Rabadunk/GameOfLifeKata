@@ -13,7 +13,6 @@ namespace GameOfLifeTests
         [InlineData("5 6")]
         [InlineData("10 10")]
         public void ShouldTakeValidCoordinatesAndReturnTrue(string input)
-
         {
             var world = new World(10, 10);
             var actual = _valid.ValidCoordinate(input, world);
@@ -26,7 +25,6 @@ namespace GameOfLifeTests
         [InlineData("11 11")]
         [InlineData("IT'S YO BOI JONO BACK AGAIN WITH ANOTHER YOUTUBE VIDEO")]
         public void ShouldTakeInvalidCoordinatesAndReturnFalse(string input)
-
         {
             var world = new World(10, 10);
             var actual = _valid.ValidCoordinate(input, world);
@@ -55,6 +53,29 @@ namespace GameOfLifeTests
             const bool expected = false;
             Assert.Equal(expected, actual);
         }
-
+        
+        [Theory]
+        [InlineData("0")]
+        [InlineData("1")]
+        public void ShouldTakeValidMenuInputAndReturnTrue(string input)
+        {
+            var actual = _valid.ValidMenuOption(input);
+            const bool expected = true;
+            Assert.Equal(expected, actual);
+        }
+        
+        [Theory]
+        [InlineData("0000")]
+        [InlineData("lmoaooa")]
+        [InlineData("")]
+        [InlineData("  ")]
+        public void ShouldTakeInvalidMenuInputAndReturnFalse(string input)
+        {
+            var actual = _valid.ValidMenuOption(input);
+            const bool expected = false;
+            Assert.Equal(expected, actual);
+        }
+        
+        
     }
 }
